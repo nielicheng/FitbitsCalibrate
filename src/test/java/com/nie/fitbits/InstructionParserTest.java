@@ -2,6 +2,8 @@ package com.nie.fitbits;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class InstructionParserTest {
@@ -56,5 +58,14 @@ public class InstructionParserTest {
 		String instruction = "4 A";
 		InstructionParser parser = new InstructionParser();
 		Position position = parser.parsePosition(instruction);
+	}
+	
+	@Test
+	public void testParseMoveInstructionLine(){
+		String instruction = "LMLM";
+		InstructionParser parser = new InstructionParser();
+		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+		String joinedMoveInstructions = String.join("", moveInstructions);
+		assertEquals(instruction, joinedMoveInstructions);
 	}
 }
