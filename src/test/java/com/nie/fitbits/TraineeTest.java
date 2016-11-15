@@ -140,5 +140,25 @@ public class TraineeTest {
 		assertEquals(expectedDirection, trainee.getDirection());
 		
 	}
+	
+	@Test
+	public void whenTraineeFaceNorthAndAtUpperBorderAndGiveMCommandThenShouldNotMove() {
+		int x = 3;
+		int y = 4;
+		String direction = "N";
+		Trainee trainee = new Trainee(x, y, direction);
+		
+		String command = "M";
+		trainee.execute(command);
+		
+		String expectedDirection = "N";
+		int expectedX = 3;
+		int expectedY = 4;
+		
+		assertEquals(expectedX, trainee.getX());
+		assertEquals(expectedY, trainee.getY());
+		assertEquals(expectedDirection, trainee.getDirection());
+		
+	}
 
 }

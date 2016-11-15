@@ -28,4 +28,13 @@ public class Pitch {
 		return right;
 	}
 
+	public boolean isOutside(int x, int y) {
+		if(x > right || x < left || y > upper || y < lower) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 }
