@@ -3,14 +3,20 @@ package com.nie.fitbits;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import static org.mockito.Mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
 /**
  * 
  * @author lnie
  *
  */
+@RunWith(MockitoJUnitRunner.class)
 public class TraineeTest {
 
+	@Mock
+	private Pitch pitch;
 	
 	@Test
 	public void whenGiveTraineeLocationAndDirectionThenTheTraineeIsThere() {
@@ -18,7 +24,7 @@ public class TraineeTest {
 		int x = 2;
 		int y = 5;
 		String direction = "N";
-		Trainee trainee = new Trainee(x, y, direction);
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		assertEquals(x, trainee.getX());
 		assertEquals(y, trainee.getY());
@@ -30,7 +36,7 @@ public class TraineeTest {
 		int x = 2;
 		int y = 5;
 		String direction = "N";
-		Trainee trainee = new Trainee(x, y, direction);
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "L";
 		trainee.execute(command);
@@ -48,7 +54,7 @@ public class TraineeTest {
 		int x = 2;
 		int y = 5;
 		String direction = "N";
-		Trainee trainee = new Trainee(x, y, direction);
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "R";
 		trainee.execute(command);
@@ -66,7 +72,10 @@ public class TraineeTest {
 		int x = 2;
 		int y = 3;
 		String direction = "N";
-		Trainee trainee = new Trainee(x, y, direction);
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(false);
+		
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "M";
 		trainee.execute(command);
@@ -86,7 +95,10 @@ public class TraineeTest {
 		int x = 2;
 		int y = 3;
 		String direction = "S";
-		Trainee trainee = new Trainee(x, y, direction);
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(false);
+		
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "M";
 		trainee.execute(command);
@@ -106,7 +118,10 @@ public class TraineeTest {
 		int x = 2;
 		int y = 3;
 		String direction = "E";
-		Trainee trainee = new Trainee(x, y, direction);
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(false);
+		
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "M";
 		trainee.execute(command);
@@ -126,7 +141,9 @@ public class TraineeTest {
 		int x = 2;
 		int y = 3;
 		String direction = "W";
-		Trainee trainee = new Trainee(x, y, direction);
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(false);
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "M";
 		trainee.execute(command);
@@ -146,7 +163,10 @@ public class TraineeTest {
 		int x = 3;
 		int y = 4;
 		String direction = "N";
-		Trainee trainee = new Trainee(x, y, direction);
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(true);
+		
+		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
 		String command = "M";
 		trainee.execute(command);
