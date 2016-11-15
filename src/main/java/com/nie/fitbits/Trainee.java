@@ -4,12 +4,12 @@ public class Trainee {
 
 	private int x;
 	private int y;
-	private String direction;
+	private DIRECTION direction;
 	
 	public Trainee(int x, int y, String direction) {
 		this.x = x;
 		this.y = y;
-		this.direction = direction;
+		this.direction = DIRECTION.valueOf(direction);
 	}
 
 	public int getX() {
@@ -21,19 +21,15 @@ public class Trainee {
 	}
 
 	public String getDirection() {
-		return direction;
+		return direction.toString();
 	}
 
 	public void execute(String command) {
 		if(command.equals("L")) {
-			if(direction.equals("N")) {
-				direction = "W";
-			}
+			direction = direction.getLeft();
 		}
 		else if(command.equals("R")) {
-			if(direction.equals("N")) {
-				direction = "E";
-			}
+			direction = direction.getRight();
 		}
 		
 	}
