@@ -1,5 +1,6 @@
 package com.nie.fitbits;
 
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ import org.junit.Test;
  */
 public class TraineeTest {
 
+	
 	@Test
 	public void whenGiveTraineeLocationAndDirectionThenTheTraineeIsThere() {
 		
