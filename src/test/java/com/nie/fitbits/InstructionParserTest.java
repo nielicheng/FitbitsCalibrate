@@ -68,4 +68,11 @@ public class InstructionParserTest {
 		String joinedMoveInstructions = String.join("", moveInstructions);
 		assertEquals(instruction, joinedMoveInstructions);
 	}
+	
+	@Test(expected=InstructionFormatException.class)
+	public void whenWrongLetterInMoveInstructionLineThenExceptionIsThrown(){
+		String instruction = "LMA";
+		InstructionParser parser = new InstructionParser();
+		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+	}
 }
