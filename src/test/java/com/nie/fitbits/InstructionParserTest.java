@@ -7,7 +7,7 @@ import org.junit.Test;
 public class InstructionParserTest {
 
 	@Test
-	public void whenAStringIsTwoPositiveNumbersSeparatedBySpaceThenAPitchInstanceIsReturned() {
+	public void whenAStringIsTwoPositiveNumbersSeparatedBySpaceThenAPitchInstanceIsReturned() throws InstructionFormatException {
 		String firstLine = "5 4";
 		InstructionParser parser = new InstructionParser();
 		PitchSize pitchSize = parser.parsePitchSize(firstLine);
