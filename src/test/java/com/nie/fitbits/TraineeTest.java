@@ -60,5 +60,85 @@ public class TraineeTest {
 		assertEquals(expectedDirection, trainee.getDirection());
 		
 	}
+	
+	@Test
+	public void whenTraineeFaceNorthAndGiveMCommandThenJustMoveNorthOneStep() {
+		int x = 2;
+		int y = 3;
+		String direction = "N";
+		Trainee trainee = new Trainee(x, y, direction);
+		
+		String command = "M";
+		trainee.execute(command);
+		
+		String expectedDirection = "N";
+		int expectedX = 2;
+		int expectedY = 4;
+		
+		assertEquals(expectedX, trainee.getX());
+		assertEquals(expectedY, trainee.getY());
+		assertEquals(expectedDirection, trainee.getDirection());
+		
+	}
+	
+	@Test
+	public void whenTraineeFaceSouthAndGiveMCommandThenJustMoveSouthOneStep() {
+		int x = 2;
+		int y = 3;
+		String direction = "S";
+		Trainee trainee = new Trainee(x, y, direction);
+		
+		String command = "M";
+		trainee.execute(command);
+		
+		String expectedDirection = "S";
+		int expectedX = 2;
+		int expectedY = 2;
+		
+		assertEquals(expectedX, trainee.getX());
+		assertEquals(expectedY, trainee.getY());
+		assertEquals(expectedDirection, trainee.getDirection());
+		
+	}
+	
+	@Test
+	public void whenTraineeFaceEastAndGiveMCommandThenJustMoveEastOneStep() {
+		int x = 2;
+		int y = 3;
+		String direction = "E";
+		Trainee trainee = new Trainee(x, y, direction);
+		
+		String command = "M";
+		trainee.execute(command);
+		
+		String expectedDirection = "E";
+		int expectedX = 3;
+		int expectedY = 3;
+		
+		assertEquals(expectedX, trainee.getX());
+		assertEquals(expectedY, trainee.getY());
+		assertEquals(expectedDirection, trainee.getDirection());
+		
+	}
+	
+	@Test
+	public void whenTraineeFaceWestAndGiveMCommandThenJustMoveWestOneStep() {
+		int x = 2;
+		int y = 3;
+		String direction = "W";
+		Trainee trainee = new Trainee(x, y, direction);
+		
+		String command = "M";
+		trainee.execute(command);
+		
+		String expectedDirection = "W";
+		int expectedX = 1;
+		int expectedY = 3;
+		
+		assertEquals(expectedX, trainee.getX());
+		assertEquals(expectedY, trainee.getY());
+		assertEquals(expectedDirection, trainee.getDirection());
+		
+	}
 
 }

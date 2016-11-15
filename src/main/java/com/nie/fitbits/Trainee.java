@@ -31,7 +31,22 @@ public class Trainee {
 		else if(command.equals("R")) {
 			direction = direction.getRight();
 		}
-		
+		if(command.equals("M")) {
+			switch (direction) {
+				case E: 
+					x = x + 1;
+					break;
+				case N:
+					y = y + 1;
+					break;
+				case W:
+					x = x - 1;
+					break;
+				case S:
+					y = y-1;
+					break;
+			}
+		}
 	}
 
 }
