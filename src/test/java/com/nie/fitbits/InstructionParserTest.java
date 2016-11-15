@@ -41,5 +41,20 @@ public class InstructionParserTest {
 		String expectedDirection = "N";
 		assertEquals(expectedX, position.getX());
 		assertEquals(expectedY, position.getY());
+		assertEquals(expectedDirection, position.getDirection());
+	}
+	
+	@Test(expected=InstructionFormatException.class)
+	public void whenWrongLetterInPositionInstructionLineThenExceptionIsThrown(){
+		String instruction = "4 3 A";
+		InstructionParser parser = new InstructionParser();
+		Position position = parser.parsePosition(instruction);
+	}
+	
+	@Test(expected=InstructionFormatException.class)
+	public void whenOnlyOneNumberInPositionInstructionLineThenExceptionIsThrown(){
+		String instruction = "4 A";
+		InstructionParser parser = new InstructionParser();
+		Position position = parser.parsePosition(instruction);
 	}
 }
