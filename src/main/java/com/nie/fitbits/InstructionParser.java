@@ -7,7 +7,7 @@ public class InstructionParser {
 	
 	private static final String PATTERN_UPPER_RIGHT_INSTRUCTION = "(\\d)\\s(\\d)";
 
-	public PitchSize parsePitchSize(String upperRightInstruction) throws InstructionFormatException {
+	public PitchSize parsePitchSize(String upperRightInstruction){
 		PitchSize pitchSize = new PitchSize();
 		Pattern pattern = Pattern.compile(PATTERN_UPPER_RIGHT_INSTRUCTION);
 		Matcher matcher = pattern.matcher(upperRightInstruction);
@@ -17,7 +17,7 @@ public class InstructionParser {
 			return pitchSize;
 		}
 		else {
-			throw new InstructionFormatException();
+			throw new InstructionFormatException("Upper right instruction format error: " + upperRightInstruction);
 		}
 	}
 

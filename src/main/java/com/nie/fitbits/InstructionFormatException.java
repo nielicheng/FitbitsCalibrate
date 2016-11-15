@@ -1,6 +1,6 @@
 package com.nie.fitbits;
 
-public class InstructionFormatException extends Exception{
+public class InstructionFormatException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 
