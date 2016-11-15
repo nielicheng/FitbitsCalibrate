@@ -24,4 +24,18 @@ public class Trainee {
 		return direction;
 	}
 
+	public void execute(String command) {
+		if(command.equals("L")) {
+			if(direction.equals("N")) {
+				direction = "W";
+			}
+		}
+		else if(command.equals("R")) {
+			if(direction.equals("N")) {
+				direction = "E";
+			}
+		}
+		
+	}
+
 }
