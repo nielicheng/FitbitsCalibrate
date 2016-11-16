@@ -11,7 +11,7 @@ public class Invoker {
 		InstructionParser parser = new InstructionParser();
 		CalibrateSession calibrateSession = parser.parseInstructionSeries(instructionList);
 		
-		Pitch pitch = new Pitch(calibrateSession.getPitchSize().getGridNumX(), calibrateSession.getPitchSize().getGridNumY());
+		Pitch pitch = new Pitch(calibrateSession.getPitchSize().getRight(), calibrateSession.getPitchSize().getUpper());
 		
 		List<String> results =
 		calibrateSession.getCalibrateInstruction().stream().map(calibrateInstruction -> {
@@ -20,7 +20,6 @@ public class Invoker {
 			Trainee trainee = new Trainee(initPosition.getX(), initPosition.getY(), initPosition.getDirection(), pitch);
 			moves.stream().forEach(move -> {
 				trainee.execute(move);
-				System.out.println(trainee.reportPosition());
 			});
 			return trainee.reportPosition();
 		}).collect(Collectors.toList());

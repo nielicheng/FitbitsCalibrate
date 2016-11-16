@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class InvokerTest {
 
-	//@Test
+	@Test
 	public void whenGiveSeriesOfInstructionsToOneTraineeThenCalibrateProcessIsExecutedAndReturnPositionReport() {
 		String[] instructions = {"5 5", "1 2 N", "LMLMLMLMM"};
 		Invoker invoker = new Invoker();
@@ -28,14 +28,14 @@ public class InvokerTest {
 		Invoker invoker = new Invoker();
 		List<String> results = invoker.execute(Arrays.asList(instructions));
 		
-		String expectedResult = "5 1 N";
+		String expectedResult = "5 1 E";
 		
 		String actualResultStr = String.join("", results);
 		
 		assertEquals(expectedResult, actualResultStr);
 	}
 	
-	//@Test
+	@Test
 	public void whenGiveSeriesOfInstructionsToTwoTraineesThenCalibrateProcessIsExecutedAndReturnPositionReports() {
 		String[] instructions = {"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"};
 		Invoker invoker = new Invoker();

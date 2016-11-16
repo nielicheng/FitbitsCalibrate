@@ -2,20 +2,20 @@ package com.nie.fitbits;
 
 public class PitchSize {
 	
-	private int gridNumX;
-	private int gridNumY;
+	private int right;
+	private int upper;
 	
-	public int getGridNumX() {
-		return gridNumX;
+	public int getRight() {
+		return right;
 	}
-	public void setGridNumX(int gridNumX) {
-		this.gridNumX = gridNumX;
+	public void setRight(int right) {
+		this.right = right;
 	}
-	public int getGridNumY() {
-		return gridNumY;
+	public int getUpper() {
+		return upper;
 	}
-	public void setGridNumY(int gridNumY) {
-		this.gridNumY = gridNumY;
+	public void setUpper(int upper) {
+		this.upper = upper;
 	}
 
 }

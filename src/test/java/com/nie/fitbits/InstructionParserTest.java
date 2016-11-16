@@ -14,10 +14,10 @@ public class InstructionParserTest {
 		String instruction = "5 4";
 		InstructionParser parser = new InstructionParser();
 		PitchSize pitchSize = parser.parsePitchSize(instruction);
-		int expectedGridNumX = 5;
-		int expectedGridNumY = 4;
-		assertEquals(expectedGridNumX, pitchSize.getGridNumX());
-		assertEquals(expectedGridNumY, pitchSize.getGridNumY());
+		int expectedRight = 5;
+		int expectedUpper = 4;
+		assertEquals(expectedRight, pitchSize.getRight());
+		assertEquals(expectedUpper, pitchSize.getUpper());
 	}
 	
 	@Test(expected=InstructionFormatException.class)
@@ -85,15 +85,15 @@ public class InstructionParserTest {
 		InstructionParser parser = new InstructionParser();
 		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 		
-		int expectedGridNumX = 5;
-		int expectedGridNumY = 5;
+		int expectedRight = 5;
+		int expectedUpper = 5;
 		
 		assertNotNull(session);
 		assertNotNull(session.getPitchSize());
 		assertNotNull(session.getCalibrateInstruction());
 
-		assertEquals(expectedGridNumX, session.getPitchSize().getGridNumX());
-		assertEquals(expectedGridNumY, session.getPitchSize().getGridNumY());
+		assertEquals(expectedRight, session.getPitchSize().getRight());
+		assertEquals(expectedUpper, session.getPitchSize().getUpper());
 		
 		int expectedNumCalibrateInstructions=2;
 		assertEquals(expectedNumCalibrateInstructions, session.getCalibrateInstruction().size());

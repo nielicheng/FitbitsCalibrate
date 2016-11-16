@@ -21,8 +21,8 @@ public class InstructionParser {
 		Pattern pattern = Pattern.compile(PATTERN_UPPER_RIGHT_INSTRUCTION);
 		Matcher matcher = pattern.matcher(upperRightInstruction);
 		if (matcher.find()) {
-			pitchSize.setGridNumX(Integer.valueOf(matcher.group(1)));
-			pitchSize.setGridNumY(Integer.valueOf(matcher.group(2)));
+			pitchSize.setRight(Integer.valueOf(matcher.group(1)));
+			pitchSize.setUpper(Integer.valueOf(matcher.group(2)));
 			return pitchSize;
 		}
 		else {

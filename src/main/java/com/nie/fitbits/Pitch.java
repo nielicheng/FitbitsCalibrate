@@ -7,9 +7,9 @@ public class Pitch {
 	private int upper;
 	private int right;
 	
-	public Pitch(int gridNumX, int gridNumY) {
-		this.upper = gridNumY - 1;
-		this.right = gridNumX - 1;
+	public Pitch(int right, int upper) {
+		this.upper = upper;
+		this.right = right;
 	}
 
 	public int getLower() {
