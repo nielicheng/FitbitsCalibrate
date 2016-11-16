@@ -1,28 +1,31 @@
 package com.nie.fitbits;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Invoker {
 	
 
-	public String execute(List<String> instructionList) {
-		String upperRightInstruction = instructionList.get(0);
-		String positionInstruction = instructionList.get(1);
-		String moveInstruction = instructionList.get(2);
+	public List<String> execute(List<String> instructionList) {
 		
 		InstructionParser parser = new InstructionParser();
-		PitchSize size = parser.parsePitchSize(upperRightInstruction);
-		Position position = parser.parsePosition(positionInstruction);
-		List<String> moves = parser.parseMoveInstruction(moveInstruction);
+		CalibrateSession calibrateSession = parser.parseInstructionSeries(instructionList);
 		
-		Pitch pitch = new Pitch(size.getGridNumX(), size.getGridNumY());
-		Trainee trainee = new Trainee(position.getX(), position.getY(), position.getDirection(), pitch);
+		Pitch pitch = new Pitch(calibrateSession.getPitchSize().getGridNumX(), calibrateSession.getPitchSize().getGridNumY());
 		
-		moves.stream().forEach(move -> {
-			trainee.execute(move);
-		});
+		List<String> results =
+		calibrateSession.getCalibrateInstruction().stream().map(calibrateInstruction -> {
+			Position initPosition = calibrateInstruction.getInitialPosition();
+			List<String> moves =  calibrateInstruction.getMoves();
+			Trainee trainee = new Trainee(initPosition.getX(), initPosition.getY(), initPosition.getDirection(), pitch);
+			moves.stream().forEach(move -> {
+				trainee.execute(move);
+				System.out.println(trainee.reportPosition());
+			});
+			return trainee.reportPosition();
+		}).collect(Collectors.toList());
 		
-		return trainee.reportPosition();
+		return results;
 		
 	}
 

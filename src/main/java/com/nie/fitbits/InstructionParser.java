@@ -60,7 +60,7 @@ public class InstructionParser {
 	}
 
 	public CalibrateSession parseInstructionSeries(List<String> instructions) {
-		if(instructions.size() <= 3) {
+		if(instructions.size() < 3) {
 			throw new InstructionFormatException("Not enough instructions in the series.");
 		}
 		
