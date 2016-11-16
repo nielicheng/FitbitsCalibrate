@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InstructionParser {
 	
@@ -56,6 +57,30 @@ public class InstructionParser {
 		else {
 			throw new InstructionFormatException("Move instruction format error: " + instruction);
 		}
+	}
+
+	public CalibrateSession parseInstructionSeries(List<String> instructions) {
+		if(instructions.size() <= 3) {
+			throw new InstructionFormatException("Not enough instructions in the series.");
+		}
+		
+		PitchSize pitchSize = parsePitchSize(instructions.get(0));
+		List<CalibrateInstruction> calibrateInstructions = IntStream.range(1, instructions.size() - 1).filter(i -> i % 2 == 1)
+                .mapToObj(i -> {
+                	CalibrateInstruction calibrateInstruction = new CalibrateInstruction();
+                	String positionInstruction = instructions.get(i);
+                	String moveInstruction = instructions.get(i+1);
+                	calibrateInstruction.setInitialPosition(parsePosition(positionInstruction));
+                	calibrateInstruction.setMoves(parseMoveInstruction(moveInstruction));
+                	return calibrateInstruction;
+                })
+                .collect(Collectors.toList());
+		
+		CalibrateSession calibrateSession = new CalibrateSession();
+		calibrateSession.setPitchSize(pitchSize);
+		calibrateSession.setCalibrateInstruction(calibrateInstructions);
+		
+		return calibrateSession;
 	}
 
 }
