@@ -2,6 +2,7 @@ package com.nie.fitbits;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -76,5 +77,47 @@ public class InstructionParserTest {
 		String instruction = "LMA";
 		InstructionParser parser = new InstructionParser();
 		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+	}
+	
+	@Test
+	public void testParseInstructionSeries() {
+		String[] instructions = {"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"};
+		InstructionParser parser = new InstructionParser();
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
+		
+		int expectedGridNumX = 5;
+		int expectedGridNumY = 5;
+		
+		assertNotNull(session);
+		assertNotNull(session.getPitchSize());
+		assertNotNull(session.getCalibrateInstruction());
+
+		assertEquals(expectedGridNumX, session.getPitchSize().getGridNumX());
+		assertEquals(expectedGridNumY, session.getPitchSize().getGridNumY());
+		
+		int expectedNumCalibrateInstructions=2;
+		assertEquals(expectedNumCalibrateInstructions, session.getCalibrateInstruction().size());
+		
+		int expectedX1 = 1;
+		int expectedY1 = 2;
+		String expectedDirection1 = "N";
+		String expectedMoves1 = "LMLMLMLMM";
+		
+		assertEquals(expectedX1, session.getCalibrateInstruction().get(0).getInitialPosition().getX());
+		assertEquals(expectedY1, session.getCalibrateInstruction().get(0).getInitialPosition().getY());
+		assertEquals(expectedDirection1, session.getCalibrateInstruction().get(0).getInitialPosition().getDirection());
+		String joinedMoveInstructions1 = String.join("", session.getCalibrateInstruction().get(0).getMoves());
+		assertEquals(expectedMoves1, joinedMoveInstructions1);
+		
+		int expectedX2 = 3;
+		int expectedY2 = 3;
+		String expectedDirection2 = "E";
+		String expectedMoves2 = "MMRMMRMRRM";
+		
+		assertEquals(expectedX2, session.getCalibrateInstruction().get(1).getInitialPosition().getX());
+		assertEquals(expectedY2, session.getCalibrateInstruction().get(1).getInitialPosition().getY());
+		assertEquals(expectedDirection2, session.getCalibrateInstruction().get(1).getInitialPosition().getDirection());
+		String joinedMoveInstructions2 = String.join("", session.getCalibrateInstruction().get(1).getMoves());
+		assertEquals(expectedMoves2, joinedMoveInstructions2);
 	}
 }
