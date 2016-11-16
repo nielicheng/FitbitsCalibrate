@@ -7,7 +7,7 @@ import org.junit.Test;
 public class PitchTest {
 
 	@Test
-	public void WhenGiveUpperRightThenPitchHasCertainBorderValue() {
+	public void WhenGiveUpperRightThenPitchIsCreated() {
 		int right = 5;
 		int upper = 5;
 		Pitch pitch = new Pitch(upper, right);

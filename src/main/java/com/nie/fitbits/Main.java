@@ -39,6 +39,13 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Read instructions from file.
+	 * 
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 */
 	private static List<String> readFile(String fileName) throws IOException {
 		Path path = Paths.get(fileName);
 		return Files.readAllLines(path);

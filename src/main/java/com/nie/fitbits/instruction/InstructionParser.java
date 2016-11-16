@@ -9,6 +9,12 @@ import java.util.stream.IntStream;
 
 import com.nie.fitbits.exception.InstructionFormatException;
 
+/**
+ * Validate and parse instructions.
+ * 
+ * @author lnie
+ *
+ */
 public class InstructionParser {
 	
 	private static final String PATTERN_UPPER_RIGHT_INSTRUCTION = "(\\d)\\s(\\d)";
@@ -26,6 +32,14 @@ public class InstructionParser {
 	
 	private static final int INSTRUCTION_INDEX_UPPERRIGHT =0;
 
+	/**
+	 * Parse upper right instruction.
+	 * 
+	 * @param upperRightInstruction The upper right instruction line
+	 * @return {@link PitchUpperRight} instance that represents parsed upper right instruction.
+	 * 
+	 * @throws InstructionFormatException if wrong formatted instruction is passed in
+	 */
 	public PitchUpperRight parsePitchUpperRight(String upperRightInstruction){
 		PitchUpperRight pitchUpperRight = new PitchUpperRight();
 		Pattern pattern = Pattern.compile(PATTERN_UPPER_RIGHT_INSTRUCTION);
@@ -40,6 +54,14 @@ public class InstructionParser {
 		}
 	}
 
+	/**
+	 * Parse position instruction.
+	 * 
+	 * @param instruction The position instruction line
+	 * @return {@link Position} instance that represents parsed position instruction.
+	 * 
+	 * @throws InstructionFormatException if wrong formatted instruction is passed in
+	 */
 	public Position parsePosition(String instruction) {
 		Position position = new Position();
 		
@@ -48,7 +70,7 @@ public class InstructionParser {
 		if (matcher.find()) {
 			position.setX(Integer.valueOf(matcher.group(GROUP_INDEX_X)));
 			position.setY(Integer.valueOf(matcher.group(GROUP_INDEX_Y)));
-			position.setDirection(matcher.group(GROUP_INDEX_FACING));
+			position.setFacing(matcher.group(GROUP_INDEX_FACING));
 			return position;
 		}
 		else {
@@ -56,6 +78,14 @@ public class InstructionParser {
 		}
 	}
 
+	/**
+	 * Parse move instruction.
+	 * 
+	 * @param instruction The move instruction line.
+	 * @return {@link List} of move instructions.
+	 * 
+	 * @throws InstructionFormatException if wrong formatted instruction is passed in
+	 */
 	public List<String> parseMoveInstruction(String instruction) {
 		
 		Pattern pattern = Pattern.compile(PATTERN_MOVE_INSTRUCTION);
@@ -69,6 +99,14 @@ public class InstructionParser {
 		}
 	}
 
+	/**
+	 * Parse a series of instructions.
+	 * 
+	 * @param instructions Series of instructions which compose the whole calibrate process.
+	 * @return {@link CalibrateSession} instance that represents the whole calibrate process.
+	 * 
+	 * @throws InstructionFormatException if wrong formatted instruction is passed in
+	 */
 	public CalibrateSession parseInstructionSeries(List<String> instructions) {
 		
 		if(instructions == null || instructions.size() < MIN_NUM_INSTRUCTIONS) {

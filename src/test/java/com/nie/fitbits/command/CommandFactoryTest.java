@@ -59,5 +59,11 @@ public class CommandFactoryTest {
 		String commandName = null;
 		Command command = commandFactory.buildCommand(commandName, trainee);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void WhenPassNullPitchThenThrowIllegalArgumentExceptionIsThrown() {
+		String commandName = "M";
+		Command command = commandFactory.buildCommand(commandName, null);
+	}
 
 }

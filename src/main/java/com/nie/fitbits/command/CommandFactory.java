@@ -10,6 +10,10 @@ public class CommandFactory {
 		if(commandName == null) {
 			throw new CommandFormatException();
 		}
+		if(trainee == null) {
+			throw new IllegalArgumentException("trainee is null.");
+		}
+		
 		switch(commandName) {
 			case "L":
 				return new TurnLeftCommand(trainee);

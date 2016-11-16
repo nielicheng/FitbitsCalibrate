@@ -1,5 +1,10 @@
 package com.nie.fitbits;
 
+/**
+ * Define a trainee.
+ * @author lnie
+ *
+ */
 public class Trainee {
 
 	private int x;
@@ -7,15 +12,19 @@ public class Trainee {
 	private DIRECTION facing;
 	private Pitch pitch;
 
-	public Trainee(int x, int y, String direction, Pitch pitch) {
+	public Trainee(int x, int y, DIRECTION facing, Pitch pitch) {
+		if(facing == null || pitch == null || pitch.isOutside(x, y)) {
+			throw new IllegalArgumentException("facing or pitch is null or (x,y) is outside of the pitch.");
+		}
+		
 		this.x = x;
 		this.y = y;
-		this.facing = DIRECTION.valueOf(direction);
+		this.facing = facing;
 		this.pitch = pitch;
 	}
 
-	public String getFacing() {
-		return facing.toString();
+	public DIRECTION getFacing() {
+		return facing;
 	}
 
 	public void turnLeft() {
@@ -56,7 +65,7 @@ public class Trainee {
 	}
 
 	public String reportPosition() {
-		return x + " " + y + " " + facing;
+		return x + " " + y + " " + facing.toString();
 	}
 
 	public int getX() {
@@ -65,34 +74,6 @@ public class Trainee {
 
 	public int getY() {
 		return y;
-	}
-	
-	public enum DIRECTION {
-		
-		E, N, W, S;
-		
-		static {
-			E.setLeftRight(N, S);
-			N.setLeftRight(W, E);
-			W.setLeftRight(S, N);
-			S.setLeftRight(E, W);
-		}
-
-		private DIRECTION left;
-		private DIRECTION right;
-
-		private void setLeftRight(DIRECTION left, DIRECTION right) {
-			this.left = left;
-			this.right = right;
-		}
-
-		public DIRECTION getLeft() {
-			return left;
-		}
-
-		public DIRECTION getRight() {
-			return right;
-		}
 	}
 }
 

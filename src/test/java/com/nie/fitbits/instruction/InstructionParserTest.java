@@ -50,7 +50,7 @@ public class InstructionParserTest {
 		String expectedDirection = "N";
 		assertEquals(expectedX, position.getX());
 		assertEquals(expectedY, position.getY());
-		assertEquals(expectedDirection, position.getDirection());
+		assertEquals(expectedDirection, position.getFacing());
 	}
 	
 	@Test(expected=InstructionFormatException.class)
@@ -111,7 +111,7 @@ public class InstructionParserTest {
 		
 		assertEquals(expectedX1, session.getCalibrateInstruction().get(0).getInitialPosition().getX());
 		assertEquals(expectedY1, session.getCalibrateInstruction().get(0).getInitialPosition().getY());
-		assertEquals(expectedDirection1, session.getCalibrateInstruction().get(0).getInitialPosition().getDirection());
+		assertEquals(expectedDirection1, session.getCalibrateInstruction().get(0).getInitialPosition().getFacing());
 		String joinedMoveInstructions1 = String.join("", session.getCalibrateInstruction().get(0).getMoves());
 		assertEquals(expectedMoves1, joinedMoveInstructions1);
 		
@@ -122,7 +122,7 @@ public class InstructionParserTest {
 		
 		assertEquals(expectedX2, session.getCalibrateInstruction().get(1).getInitialPosition().getX());
 		assertEquals(expectedY2, session.getCalibrateInstruction().get(1).getInitialPosition().getY());
-		assertEquals(expectedDirection2, session.getCalibrateInstruction().get(1).getInitialPosition().getDirection());
+		assertEquals(expectedDirection2, session.getCalibrateInstruction().get(1).getInitialPosition().getFacing());
 		String joinedMoveInstructions2 = String.join("", session.getCalibrateInstruction().get(1).getMoves());
 		assertEquals(expectedMoves2, joinedMoveInstructions2);
 	}

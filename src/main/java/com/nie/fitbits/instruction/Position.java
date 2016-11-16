@@ -1,9 +1,14 @@
 package com.nie.fitbits.instruction;
 
+/**
+ * Holding the parsed location and facing instruction
+ * @author lnie
+ *
+ */
 public class Position {
 	private int x;
 	private int y;
-	private String direction;
+	private String facing;
 	
 	public int getX() {
 		return x;
@@ -17,11 +22,11 @@ public class Position {
 	public void setY(int y) {
 		this.y = y;
 	}
-	public String getDirection() {
-		return direction;
+	public String getFacing() {
+		return facing;
 	}
-	public void setDirection(String direction) {
-		this.direction = direction;
+	public void setFacing(String facing) {
+		this.facing = facing;
 	}
 	
 	

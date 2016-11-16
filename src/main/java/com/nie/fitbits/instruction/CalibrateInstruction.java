@@ -2,6 +2,12 @@ package com.nie.fitbits.instruction;
 
 import java.util.List;
 
+/**
+ * Holding all parsed instructions of one trainee.
+ * 
+ * @author lnie
+ *
+ */
 public class CalibrateInstruction {
 	
 	private Position initialPosition;

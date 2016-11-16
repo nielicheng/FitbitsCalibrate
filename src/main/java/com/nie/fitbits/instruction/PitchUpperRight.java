@@ -1,5 +1,11 @@
 package com.nie.fitbits.instruction;
 
+/**
+ * Holding the parsed upper and right instruction
+ * 
+ * @author lnie
+ *
+ */
 public class PitchUpperRight {
 	
 	private int right;
