@@ -180,5 +180,21 @@ public class TraineeTest {
 		assertEquals(expectedDirection, trainee.getDirection());
 		
 	}
+	
+	@Test
+	public void testTraineePositionReport() {
+		int x = 3;
+		int y = 4;
+		String direction = "N";
+		
+		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(true);
+		
+		Trainee trainee = new Trainee(x, y, direction, pitch);
+		
+		String positionReport = trainee.reportPosition();
+		String expectedPosition = "3 4 N";
+		
+		assertEquals(expectedPosition, positionReport);
+	}
 
 }

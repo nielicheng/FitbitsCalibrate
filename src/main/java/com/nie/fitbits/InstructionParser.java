@@ -50,7 +50,7 @@ public class InstructionParser {
 		Pattern pattern = Pattern.compile(PATTERN_MOVE_INSTRUCTION);
 		Matcher matcher = pattern.matcher(instruction);
 		if (matcher.matches()) {
-			List<String> moves = Arrays.asList(instruction.toCharArray()).stream().map(c -> String.valueOf(c)).collect(Collectors.toList());
+			List<String> moves = Arrays.asList(instruction.split(""));
 			return moves;
 		}
 		else {

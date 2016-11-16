@@ -65,7 +65,9 @@ public class InstructionParserTest {
 		String instruction = "LMLM";
 		InstructionParser parser = new InstructionParser();
 		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+		int expectedSize = 4;
 		String joinedMoveInstructions = String.join("", moveInstructions);
+		assertEquals(expectedSize, moveInstructions.size());
 		assertEquals(instruction, joinedMoveInstructions);
 	}
 	

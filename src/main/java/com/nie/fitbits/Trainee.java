@@ -63,4 +63,8 @@ public class Trainee {
 		}
 	}
 
+	public String reportPosition() {
+		return x + " " + y + " " + direction;
+	}
+
 }
