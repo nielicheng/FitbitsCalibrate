@@ -1,4 +1,4 @@
-package com.nie.fitbits;
+package com.nie.fitbits.instruction;
 
 import java.util.List;
 

@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import com.nie.fitbits.exception.InstructionFormatException;
+
 
 public class Main {
 
@@ -22,14 +24,17 @@ public class Main {
 			try {
 				
 				List<String> instructions = readFile(fileName);
-				Invoker invoker = new Invoker();
-				List<String> results = invoker.execute(instructions);
+				CalibrateInvoker invoker = new CalibrateInvoker();
+				List<String> results = invoker.doCalibrate(instructions);
+				
 				results.stream().forEach(result -> {
 					System.out.println(result);
 				});
 				
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("Failed reading from file. (" + e.getMessage() + ")");
+			} catch (InstructionFormatException e) {
+				System.out.println("Wrong formatted instruction found. (" + e.getMessage() + ")");
 			}
 		}
 	}

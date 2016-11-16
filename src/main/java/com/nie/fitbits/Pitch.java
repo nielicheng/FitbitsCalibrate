@@ -1,5 +1,11 @@
 package com.nie.fitbits;
 
+/**
+ * Define a pitch
+ * 
+ * @author lnie
+ *
+ */
 public class Pitch {
 
 	private int lower = 0;
@@ -7,7 +13,11 @@ public class Pitch {
 	private int upper;
 	private int right;
 	
-	public Pitch(int right, int upper) {
+	public Pitch(int upper, int right) {
+		if(upper <= 0 || right <= 0) {
+			throw new IllegalArgumentException("The value of upper or right is not allowed.");
+		}
+		
 		this.upper = upper;
 		this.right = right;
 	}

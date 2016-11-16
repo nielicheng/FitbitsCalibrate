@@ -1,4 +1,4 @@
-package com.nie.fitbits;
+package com.nie.fitbits.exception;
 
 public class InstructionFormatException extends RuntimeException{
 

@@ -28,7 +28,7 @@ public class TraineeTest {
 		
 		assertEquals(x, trainee.getX());
 		assertEquals(y, trainee.getY());
-		assertEquals(direction, trainee.getDirection());
+		assertEquals(direction, trainee.getFacing());
 	}
 	
 	@Test
@@ -38,14 +38,13 @@ public class TraineeTest {
 		String direction = "N";
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "L";
-		trainee.execute(command);
+		trainee.turnLeft();;
 		
 		String expectedDirection = "W";
 		
 		assertEquals(x, trainee.getX());
 		assertEquals(y, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -56,14 +55,13 @@ public class TraineeTest {
 		String direction = "N";
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "R";
-		trainee.execute(command);
+		trainee.turnRight();
 		
 		String expectedDirection = "E";
 		
 		assertEquals(x, trainee.getX());
 		assertEquals(y, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -77,8 +75,7 @@ public class TraineeTest {
 		
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "M";
-		trainee.execute(command);
+		trainee.moveForward();
 		
 		String expectedDirection = "N";
 		int expectedX = 2;
@@ -86,7 +83,7 @@ public class TraineeTest {
 		
 		assertEquals(expectedX, trainee.getX());
 		assertEquals(expectedY, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -100,8 +97,7 @@ public class TraineeTest {
 		
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "M";
-		trainee.execute(command);
+		trainee.moveForward();
 		
 		String expectedDirection = "S";
 		int expectedX = 2;
@@ -109,7 +105,7 @@ public class TraineeTest {
 		
 		assertEquals(expectedX, trainee.getX());
 		assertEquals(expectedY, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -123,8 +119,7 @@ public class TraineeTest {
 		
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "M";
-		trainee.execute(command);
+		trainee.moveForward();
 		
 		String expectedDirection = "E";
 		int expectedX = 3;
@@ -132,7 +127,7 @@ public class TraineeTest {
 		
 		assertEquals(expectedX, trainee.getX());
 		assertEquals(expectedY, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -145,8 +140,7 @@ public class TraineeTest {
 		when(pitch.isOutside(anyInt(), anyInt())).thenReturn(false);
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "M";
-		trainee.execute(command);
+		trainee.moveForward();
 		
 		String expectedDirection = "W";
 		int expectedX = 1;
@@ -154,7 +148,7 @@ public class TraineeTest {
 		
 		assertEquals(expectedX, trainee.getX());
 		assertEquals(expectedY, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	
@@ -168,8 +162,7 @@ public class TraineeTest {
 		
 		Trainee trainee = new Trainee(x, y, direction, pitch);
 		
-		String command = "M";
-		trainee.execute(command);
+		trainee.moveForward();
 		
 		String expectedDirection = "N";
 		int expectedX = 3;
@@ -177,7 +170,7 @@ public class TraineeTest {
 		
 		assertEquals(expectedX, trainee.getX());
 		assertEquals(expectedY, trainee.getY());
-		assertEquals(expectedDirection, trainee.getDirection());
+		assertEquals(expectedDirection, trainee.getFacing());
 		
 	}
 	

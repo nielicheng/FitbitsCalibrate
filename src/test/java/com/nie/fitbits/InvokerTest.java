@@ -12,8 +12,8 @@ public class InvokerTest {
 	@Test
 	public void whenGiveSeriesOfInstructionsToOneTraineeThenCalibrateProcessIsExecutedAndReturnPositionReport() {
 		String[] instructions = {"5 5", "1 2 N", "LMLMLMLMM"};
-		Invoker invoker = new Invoker();
-		List<String> results = invoker.execute(Arrays.asList(instructions));
+		CalibrateInvoker invoker = new CalibrateInvoker();
+		List<String> results = invoker.doCalibrate(Arrays.asList(instructions));
 		
 		String expectedResult = "1 3 N";
 		
@@ -25,8 +25,8 @@ public class InvokerTest {
 	@Test
 	public void whenGiveSeriesOfInstructionsToOneTraineeThenCalibrateProcessIsExecutedAndReturnPositionReport2() {
 		String[] instructions = {"5 5", "3 3 E", "MMRMMRMRRM"};
-		Invoker invoker = new Invoker();
-		List<String> results = invoker.execute(Arrays.asList(instructions));
+		CalibrateInvoker invoker = new CalibrateInvoker();
+		List<String> results = invoker.doCalibrate(Arrays.asList(instructions));
 		
 		String expectedResult = "5 1 E";
 		
@@ -38,8 +38,8 @@ public class InvokerTest {
 	@Test
 	public void whenGiveSeriesOfInstructionsToTwoTraineesThenCalibrateProcessIsExecutedAndReturnPositionReports() {
 		String[] instructions = {"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"};
-		Invoker invoker = new Invoker();
-		List<String> results = invoker.execute(Arrays.asList(instructions));
+		CalibrateInvoker invoker = new CalibrateInvoker();
+		List<String> results = invoker.doCalibrate(Arrays.asList(instructions));
 		
 		String expectedResult = "1 3 N5 1 E";
 		

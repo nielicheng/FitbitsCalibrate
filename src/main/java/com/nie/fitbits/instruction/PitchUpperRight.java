@@ -1,6 +1,6 @@
-package com.nie.fitbits;
+package com.nie.fitbits.instruction;
 
-public class PitchSize {
+public class PitchUpperRight {
 	
 	private int right;
 	private int upper;

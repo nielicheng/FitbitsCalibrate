@@ -10,7 +10,7 @@ public class PitchTest {
 	public void WhenGiveUpperRightThenPitchHasCertainBorderValue() {
 		int right = 5;
 		int upper = 5;
-		Pitch pitch = new Pitch(right, upper);
+		Pitch pitch = new Pitch(upper, right);
 		
 		int expectedLower = 0;
 		int expectedLeft = 0;
@@ -23,11 +23,40 @@ public class PitchTest {
 		assertEquals(expectedRight, pitch.getRight());
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void WhenGiveZeroUpperValueThenIllegalArgumentExceptionIsThrown() {
+		int right = 5;
+		int upper = 0;
+		Pitch pitch = new Pitch(upper, right);
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void WhenGiveZeroRightValueThenIllegalArgumentExceptionIsThrown() {
+		int right = 0;
+		int upper = 5;
+		Pitch pitch = new Pitch(upper, right);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void WhenGiveMinusUpperValueThenIllegalArgumentExceptionIsThrown() {
+		int right = 5;
+		int upper = -1;
+		Pitch pitch = new Pitch(upper, right);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void WhenGiveMinusRightValueThenIllegalArgumentExceptionIsThrown() {
+		int right = -5;
+		int upper = 1;
+		Pitch pitch = new Pitch(upper, right);
+	}
+	
 	@Test
 	public void WhenXIsGreaterThanRightThenItIsOutside() {
 		int right = 5;
 		int upper = 5;
-		Pitch pitch = new Pitch(right, upper);
+		Pitch pitch = new Pitch(upper, right);
 		
 		int x = 6;
 		int y = 2;
@@ -41,7 +70,7 @@ public class PitchTest {
 	public void WhenXIsLessThanLeftThenItIsOutside() {
 		int right = 5;
 		int upper = 5;
-		Pitch pitch = new Pitch(right, upper);
+		Pitch pitch = new Pitch(upper, right);
 		
 		int x = -1;
 		int y = 2;
@@ -55,7 +84,7 @@ public class PitchTest {
 	public void WhenYIsGreaterThanUpperThenItIsOutside() {
 		int right = 5;
 		int upper = 5;
-		Pitch pitch = new Pitch(right, upper);
+		Pitch pitch = new Pitch(upper, right);
 		
 		int x = 1;
 		int y = 6;
@@ -69,7 +98,7 @@ public class PitchTest {
 	public void WhenYIsLessThanLowerThenItIsOutside() {
 		int right = 5;
 		int upper = 5;
-		Pitch pitch = new Pitch(right, upper);
+		Pitch pitch = new Pitch(upper, right);
 		
 		int x = 1;
 		int y = -1;

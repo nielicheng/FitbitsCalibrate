@@ -1,18 +1,18 @@
-package com.nie.fitbits;
+package com.nie.fitbits.instruction;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CalibrateSession {
-	private PitchSize pitchSize;
+	private PitchUpperRight pitchUpperRight;
 	private List<CalibrateInstruction> calibrateInstruction = new ArrayList<>();
 
-	public PitchSize getPitchSize() {
-		return pitchSize;
+	public PitchUpperRight getPitchUpperRight() {
+		return pitchUpperRight;
 	}
 
-	public void setPitchSize(PitchSize pitchSize) {
-		this.pitchSize = pitchSize;
+	public void setPitchUpperRight(PitchUpperRight pitchUpperRight) {
+		this.pitchUpperRight = pitchUpperRight;
 	}
 
 	public List<CalibrateInstruction> getCalibrateInstruction() {

@@ -1,4 +1,4 @@
-package com.nie.fitbits;
+package com.nie.fitbits.instruction;
 
 import static org.junit.Assert.*;
 
@@ -7,31 +7,37 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.nie.fitbits.exception.InstructionFormatException;
+import com.nie.fitbits.instruction.CalibrateSession;
+import com.nie.fitbits.instruction.InstructionParser;
+import com.nie.fitbits.instruction.PitchUpperRight;
+import com.nie.fitbits.instruction.Position;
+
 public class InstructionParserTest {
 
 	@Test
 	public void testParseUpperRightInstructionLine(){
 		String instruction = "5 4";
 		InstructionParser parser = new InstructionParser();
-		PitchSize pitchSize = parser.parsePitchSize(instruction);
+		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
 		int expectedRight = 5;
 		int expectedUpper = 4;
-		assertEquals(expectedRight, pitchSize.getRight());
-		assertEquals(expectedUpper, pitchSize.getUpper());
+		assertEquals(expectedRight, pitchUpperRight.getRight());
+		assertEquals(expectedUpper, pitchUpperRight.getUpper());
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenOnlyOneNumberInUpperRightInstructionLineThenExceptionIsThrown(){
 		String instruction = "5";
 		InstructionParser parser = new InstructionParser();
-		PitchSize pitchSize = parser.parsePitchSize(instruction);
+		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenALetterInUpperRightInstructionLineThenExceptionIsThrown(){
 		String instruction = "5 N";
 		InstructionParser parser = new InstructionParser();
-		PitchSize pitchSize = parser.parsePitchSize(instruction);
+		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
 	}
 	
 	@Test
@@ -89,11 +95,11 @@ public class InstructionParserTest {
 		int expectedUpper = 5;
 		
 		assertNotNull(session);
-		assertNotNull(session.getPitchSize());
+		assertNotNull(session.getPitchUpperRight());
 		assertNotNull(session.getCalibrateInstruction());
 
-		assertEquals(expectedRight, session.getPitchSize().getRight());
-		assertEquals(expectedUpper, session.getPitchSize().getUpper());
+		assertEquals(expectedRight, session.getPitchUpperRight().getRight());
+		assertEquals(expectedUpper, session.getPitchUpperRight().getUpper());
 		
 		int expectedNumCalibrateInstructions=2;
 		assertEquals(expectedNumCalibrateInstructions, session.getCalibrateInstruction().size());

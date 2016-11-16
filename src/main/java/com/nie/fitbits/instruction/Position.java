@@ -1,4 +1,4 @@
-package com.nie.fitbits;
+package com.nie.fitbits.instruction;
 
 public class Position {
 	private int x;
