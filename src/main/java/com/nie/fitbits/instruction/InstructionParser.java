@@ -17,7 +17,7 @@ import com.nie.fitbits.exception.InstructionFormatException;
  */
 public class InstructionParser {
 	
-	private static final String PATTERN_UPPER_RIGHT_INSTRUCTION = "(\\d)\\s(\\d)";
+	private static final String PATTERN_UPPER_RIGHT_INSTRUCTION = "^(\\d)\\s(\\d)$";
 	private static final int GROUP_INDEX_UPPER = 1;
 	private static final int GROUP_INDEX_RIGHT = 2;
 	
@@ -40,7 +40,7 @@ public class InstructionParser {
 	 * 
 	 * @throws InstructionFormatException if wrong formatted instruction is passed in
 	 */
-	public PitchUpperRight parsePitchUpperRight(String upperRightInstruction){
+	private PitchUpperRight parsePitchUpperRight(String upperRightInstruction){
 		PitchUpperRight pitchUpperRight = new PitchUpperRight();
 		Pattern pattern = Pattern.compile(PATTERN_UPPER_RIGHT_INSTRUCTION);
 		Matcher matcher = pattern.matcher(upperRightInstruction);
@@ -62,7 +62,7 @@ public class InstructionParser {
 	 * 
 	 * @throws InstructionFormatException if wrong formatted instruction is passed in
 	 */
-	public Position parsePosition(String instruction) {
+	private Position parsePosition(String instruction) {
 		Position position = new Position();
 		
 		Pattern pattern = Pattern.compile(PATTERN_POSITION_INSTRUCTION);
@@ -86,7 +86,7 @@ public class InstructionParser {
 	 * 
 	 * @throws InstructionFormatException if wrong formatted instruction is passed in
 	 */
-	public List<String> parseMoveInstruction(String instruction) {
+	private List<String> parseMoveInstruction(String instruction) {
 		
 		Pattern pattern = Pattern.compile(PATTERN_MOVE_INSTRUCTION);
 		Matcher matcher = pattern.matcher(instruction);

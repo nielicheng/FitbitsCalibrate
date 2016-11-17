@@ -3,86 +3,93 @@ package com.nie.fitbits.instruction;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.nie.fitbits.exception.InstructionFormatException;
 import com.nie.fitbits.instruction.CalibrateSession;
 import com.nie.fitbits.instruction.InstructionParser;
-import com.nie.fitbits.instruction.PitchUpperRight;
-import com.nie.fitbits.instruction.Position;
 
 public class InstructionParserTest {
 
+	private InstructionParser parser;
+	
+	@Before
+	public void init() {
+		parser = new InstructionParser();
+	}
+	
 	@Test
 	public void testParseUpperRightInstructionLine(){
-		String instruction = "5 4";
-		InstructionParser parser = new InstructionParser();
-		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
+		
+		String[] instructions = {"5 4", "1 2 N", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
+		
 		int expectedRight = 5;
 		int expectedUpper = 4;
-		assertEquals(expectedRight, pitchUpperRight.getRight());
-		assertEquals(expectedUpper, pitchUpperRight.getUpper());
+		assertEquals(expectedRight, session.getPitchUpperRight().getRight());
+		assertEquals(expectedUpper, session.getPitchUpperRight().getUpper());
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenOnlyOneNumberInUpperRightInstructionLineThenExceptionIsThrown(){
-		String instruction = "5";
-		InstructionParser parser = new InstructionParser();
-		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
+		
+		String[] instructions = {"5 ", "1 2 N", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenALetterInUpperRightInstructionLineThenExceptionIsThrown(){
-		String instruction = "5 N";
-		InstructionParser parser = new InstructionParser();
-		PitchUpperRight pitchUpperRight = parser.parsePitchUpperRight(instruction);
+		
+		String[] instructions = {"5 N", "1 2 N", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 	}
 	
 	@Test
 	public void testParsePositionInstructionLine(){
-		String instruction = "3 4 N";
-		InstructionParser parser = new InstructionParser();
-		Position position = parser.parsePosition(instruction);
+		
+		String[] instructions = {"5 5", "3 4 N", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 		int expectedX = 3;
 		int expectedY = 4;
 		String expectedDirection = "N";
-		assertEquals(expectedX, position.getX());
-		assertEquals(expectedY, position.getY());
-		assertEquals(expectedDirection, position.getFacing());
+		assertEquals(1, session.getCalibrateInstruction().size());
+		assertEquals(expectedX, session.getCalibrateInstruction().get(0).getInitialPosition().getX());
+		assertEquals(expectedY, session.getCalibrateInstruction().get(0).getInitialPosition().getY());
+		assertEquals(expectedDirection, session.getCalibrateInstruction().get(0).getInitialPosition().getFacing());
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenWrongLetterInPositionInstructionLineThenExceptionIsThrown(){
-		String instruction = "4 3 A";
-		InstructionParser parser = new InstructionParser();
-		Position position = parser.parsePosition(instruction);
+
+		String[] instructions = {"5 5", "4 3 A", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenOnlyOneNumberInPositionInstructionLineThenExceptionIsThrown(){
-		String instruction = "4 A";
-		InstructionParser parser = new InstructionParser();
-		Position position = parser.parsePosition(instruction);
+
+		String[] instructions = {"5 5", "4 3", "LMLMLMLMM"};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 	}
 	
 	@Test
 	public void testParseMoveInstructionLine(){
-		String instruction = "LMLM";
-		InstructionParser parser = new InstructionParser();
-		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+		String moveInstruction = "LMLM";
+		String[] instructions = {"5 5", "4 3 N", moveInstruction};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 		int expectedSize = 4;
-		String joinedMoveInstructions = String.join("", moveInstructions);
-		assertEquals(expectedSize, moveInstructions.size());
-		assertEquals(instruction, joinedMoveInstructions);
+		String joinedMoveInstructions = String.join("", session.getCalibrateInstruction().get(0).getMoves());
+		assertEquals(expectedSize, session.getCalibrateInstruction().get(0).getMoves().size());
+		assertEquals(moveInstruction, joinedMoveInstructions);
 	}
 	
 	@Test(expected=InstructionFormatException.class)
 	public void whenWrongLetterInMoveInstructionLineThenExceptionIsThrown(){
 		String instruction = "LMA";
-		InstructionParser parser = new InstructionParser();
-		List<String> moveInstructions = parser.parseMoveInstruction(instruction);
+		String[] instructions = {"5 5", "4 3 N", instruction};
+		CalibrateSession session = parser.parseInstructionSeries(Arrays.asList(instructions));
 	}
 	
 	@Test
