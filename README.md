@@ -30,7 +30,7 @@ Classes are organised in following packages:
     * Pitch : Implements the pitch of the coding problem.
     * Trainee : Implements the trainee of the coding problem.
     * DIRECTION : An enum which defines compass directions of E, N, W, S .
-    * CalibrateInvoker : Implements the main logic of the calibrate process.
+    * CalibrateInvoker : Implements the main logic of invoking the calibrate process.
     * Main : The main class of the application. It reads instructions from a file and call CalibrateInvoker to start the calibrate process.
  *  com.nie.fitbits.instruction : Instruction parsing class and classes which hold the parsed instruction details
     * InstructionParser : Implements instruction parsing functions.
