@@ -7,6 +7,8 @@ package com.nie.fitbits;
  */
 public class Trainee {
 
+	private static final int ONE_STEP  = 1;
+	
 	private int x;
 	private int y;
 	private DIRECTION facing;
@@ -38,27 +40,27 @@ public class Trainee {
 	public void moveForward() {
 		switch (facing) {
 			case E:
-				int tryX = x + 1;
+				int tryX = x + ONE_STEP;
 				if (!pitch.isOutside(tryX, y)) {
-					x = x + 1;
+					x = x + ONE_STEP;
 				}
 				break;
 			case N:
-				int tryY = y + 1;
+				int tryY = y + ONE_STEP;
 				if (!pitch.isOutside(x, tryY)) {
-					y = y + 1;
+					y = y + ONE_STEP;
 				}
 				break;
 			case W:
-				int tryX2 = x - 1;
+				int tryX2 = x - ONE_STEP;
 				if (!pitch.isOutside(tryX2, y)) {
-					x = x - 1;
+					x = x - ONE_STEP;
 				}
 				break;
 			case S:
-				int tryY2 = y - 1;
+				int tryY2 = y - ONE_STEP;
 				if (!pitch.isOutside(x, tryY2)) {
-					y = y - 1;
+					y = y - ONE_STEP;
 				}
 				break;
 		}
