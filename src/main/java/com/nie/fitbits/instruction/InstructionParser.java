@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.nie.fitbits.exception.InstructionFormatException;
+import com.nie.fitbits.instruction.exception.InstructionFormatException;
 
 /**
  * Validate and parse instructions.

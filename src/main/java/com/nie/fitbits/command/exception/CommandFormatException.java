@@ -1,5 +1,10 @@
 package com.nie.fitbits.command.exception;
 
+/**
+ * Indicate not able to generate command due to wrong move command text.
+ * @author lnie
+ *
+ */
 public class CommandFormatException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;

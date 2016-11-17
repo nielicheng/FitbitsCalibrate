@@ -7,9 +7,9 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.nie.fitbits.exception.InstructionFormatException;
 import com.nie.fitbits.instruction.CalibrateSession;
 import com.nie.fitbits.instruction.InstructionParser;
+import com.nie.fitbits.instruction.exception.InstructionFormatException;
 
 public class InstructionParserTest {
 

@@ -1,5 +1,10 @@
-package com.nie.fitbits.exception;
+package com.nie.fitbits.instruction.exception;
 
+/**
+ * Indicate wrong format of instruction is come across
+ * @author lnie
+ *
+ */
 public class InstructionFormatException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;

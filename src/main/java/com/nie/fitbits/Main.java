@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import com.nie.fitbits.exception.InstructionFormatException;
+import com.nie.fitbits.instruction.exception.InstructionFormatException;
 
 
 public class Main {
